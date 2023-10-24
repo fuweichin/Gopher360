@@ -533,14 +533,21 @@ void Gopher::handleMouseMovement()
     dx = getDelta(tx) * mult;
     dy = getDelta(ty) * mult;
   }
-
+  
   x += dx;
   _xRest = x - (float)((int)x);
 
   y -= dy;
   _yRest = y - (float)((int)y);
 
-  SetCursorPos((int)x, (int)y); //after all click input processing
+  int oldX = (int)cursor.x;
+  int oldY = (int)cursor.y;
+  int newX = (int)x;
+  int newY = (int)y;
+  if (newX != oldX || newY != oldY)
+  {
+    SetCursorPos(newX, newY); //after all click input processing
+  }
 }
 
 // Description:
